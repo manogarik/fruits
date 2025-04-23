@@ -5,7 +5,7 @@ import fruits from "./routes/fruits.mjs";
 
 import Fruit from './models/fruit.mjs'
 
-//dotenv.config()
+dotenv.config()
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,27 +13,21 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded());
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://manogarikumaraguru:ManoMongo2025@mongopractice.t0opbtz.mongodb.net/?retryWrites=true&w=majority&appName=MongoPractice", {
+// mongoose.connect("mongodb+srv://manogarikumaraguru:ManoMongo2025@mongopractice.t0opbtz.mongodb.net/?retryWrites=true&w=majority&appName=MongoPractice", {
     
-  })
-  .then(() => console.log('✅ Connected to MongoDB'))
-  .catch(err => console.error('❌ MongoDB connection error:', err));
+//   })
+//   .then(() => console.log('✅ Connected to MongoDB'))
+//   .catch(err => console.error('❌ MongoDB connection error:', err));
 
  
 
-//   mongoose.connect("mongodb+srv://manogarikumaraguru:ManoMongo2025@mongopractice.t0opbtz.mongodb.net/?retryWrites=true&w=majority&appName=MongoPractice", {
-//   });
-//   mongoose.connection.once('open', ()=> {
-//       console.log('connected to mongoDB')
-//   })
+  mongoose.connect(process.env.ATLAS_URI);
+  mongoose.connection.once('open', ()=> {
+      console.log('connected to mongoDB')
+  })
   
 
-//Route
-// app.get("/", (req, res) => {
-//     res.send("Welcome to the Fruits API!!!");
-//   });
-  
-//seed route
+
 
 app.use('/fruits', fruits);
 
